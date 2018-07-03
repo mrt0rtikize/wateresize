@@ -9,6 +9,7 @@ from os.path import isfile, join, exists, exists
 from wand.image import Image
 import argparse
 import logging
+from os import remove as rmfile
 
 
 # logging
@@ -108,7 +109,7 @@ for f in listdir(in_path):
                     watermark_position(img, watermark)
                 img.save(filename = out_path + "/" + f)
                 logging.debug("Size after {0}.".format(img.size))
-                os.remove(in_path + "/" + f)
+                rmfile(in_path + "/" + f)
         except Exception as e:
             logging.error("Image processing error:", e)
 
