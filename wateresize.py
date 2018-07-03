@@ -108,6 +108,7 @@ for f in listdir(in_path):
                     watermark_position(img, watermark)
                 img.save(filename = out_path + "/" + f)
                 logging.debug("Size after {0}.".format(img.size))
+                os.remove(in_path + "/" + f)
         except Exception as e:
             logging.error("Image processing error:", e)
 

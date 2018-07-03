@@ -1,11 +1,14 @@
-FROM ubuntu:17.04
+FROM alpine:latest
 
-RUN apt-get update \
-	&& apt-get install -y python python-pip imagemagick
+RUN apk add --no-cache python3 imagemagick6 git 
+RUN pip3 install --upgrade pip && pip3 install Wand
+RUN git clone https://github.com/mrt0rtikize/wateresize.git 
+RUN mkdir /wateresize/images
 
-RUN pip install Wand
+VOLUME ["/images"]
 
-ADD wateresize.py /home/wateresize.py
+COPY entrypoint.sh /wateresize/
+WORKDIR /wateresize 
 
-WORKDIR /home
+ENTRYPOINT ["/wateresize/entrypoint.sh"]
 
