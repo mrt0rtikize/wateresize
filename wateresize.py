@@ -72,7 +72,7 @@ def watermark_position(img, watermark):
 # Set watermark at the bottom-left corner of the image
 # ===============================                     
 def set_watermark(img, watermark):
-    img.watermark(watermark, transparency = 0.60, left = 15, top = img.height - watermark.height - 15)
+    img.watermark(watermark, transparency = 0.60, left = img.width - watermark.width - 15, top = img.height - watermark.height - 15)
 
 """
 BEGIN
